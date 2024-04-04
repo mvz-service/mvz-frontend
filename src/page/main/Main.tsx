@@ -93,7 +93,7 @@ export default function Main() {
                         >
                         {
                             weekend && weekend.weeklyBoxOfficeList.map((item,index)=>
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <MovieCard item={item}/>
                                 </SwiperSlide>
                             )
@@ -133,7 +133,7 @@ export default function Main() {
                         >
                         {
                             weekday && weekday.weeklyBoxOfficeList.map((item,index)=>
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <MovieCard item={item}/>
                                 </SwiperSlide>
                             )
