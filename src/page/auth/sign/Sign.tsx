@@ -4,6 +4,8 @@ import { FirebaseError } from "firebase/app";
 import { useNavigate } from "react-router-dom";
 import { MySwal } from "../../../utils/MySwal";
 import { auth } from "../../../firebase";
+import Input from "../../../components/common/form/Input";
+import Btn from "../../../components/common/form/Btn";
 // import { MenuTitle } from "../../component/Mypage/MenuTitle";
 // import { Input } from "../../component/Mypage/Input";
 // import { Btn } from "../../component/Mypage/Btn";
@@ -86,25 +88,26 @@ export default function Sign() {
   }
 
   return (
-    <div className="container px-4 my-40 mx-auto">
+    <div className="container px-4 my-40 mx-auto font-pretendard tracking-custom">
       <div className="border-2 border-point-color px-10 py-20 bg-white rounded-3xl text-left max-w-md mx-auto">
-        {/* <MenuTitle>회원가입</MenuTitle> */}
+        
+      <h3 className="text-point-color font-bold text-2xl text-center">회원가입</h3>
+
         <form onSubmit={onSubmit}>
           <div className="flex mt-7 gap-4 flex-col max-w-4xl mx-auto">
 
             {/* <InputBox>
               <label htmlFor="email" className="text-sm">이메일 <span className="text-red-500 ml-1">*</span></label>
-              <Input 
-                id="email"
-                name="email"
-                type="email" 
-                placeholder="이메일을 입력해주세요"
-                onChange={onChange}
-                required
-              />
             </InputBox> */}
-
-            <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" onChange={onChange} required />
+            
+            <Input
+              id="email"
+              name="email"
+              type="email" 
+              placeholder="이메일을 입력해주세요"
+              onChange={onChange}
+              required
+            />
 
             {/* <InputBox>
             <label htmlFor="nickname" className="text-sm">닉네임 <span className="text-red-500 ml-1">*</span></label>
@@ -118,7 +121,14 @@ export default function Sign() {
               />
             </InputBox> */}
             
-            <input id="nickname" name="nickname" type="text" placeholder="닉네임을 입력해주세요" onChange={onChange} required/>
+            <Input 
+              id="nickname" 
+              name="nickname" 
+              type="text" 
+              placeholder="닉네임을 입력해주세요" 
+              onChange={onChange}
+              required
+            />
 
             {/* <InputBox>
             <label htmlFor="nickname" className="text-sm">비밀번호 <span className="text-red-500 ml-1">*</span></label>
@@ -132,7 +142,14 @@ export default function Sign() {
               />
             </InputBox> */}
             
-            <input id="pwd" name="pwd" type="password"  placeholder="비밀번호을 입력해주세요"  onChange={onChange} required/>
+            <Input 
+              id="pwd"
+              name="pwd"
+              type="password" 
+              placeholder="비밀번호을 입력해주세요" 
+              onChange={onChange}
+              required
+            />
 
             {/* <InputBox>
             <label htmlFor="nickname" className="text-sm">비밀번호 확인 <span className="text-red-500 ml-1">*</span></label>
@@ -146,11 +163,17 @@ export default function Sign() {
               />
             </InputBox> */}
             
-            <input id="pwdchk" name="pwdchk" type="password" placeholder="비밀번호을 다시한번 입력해주세요" onChange={onChange} required/>
+            <Input 
+              id="pwdchk" 
+              name="pwdchk" 
+              type="password" 
+              placeholder="비밀번호을 다시한번 입력해주세요" 
+              onChange={onChange}
+              required
+            />
 
             <div className="text-center mt-5">
-                <button type="submit">회원가입</button>
-              {/* <Btn type="submit">회원가입</Btn> */}
+              <Btn type="submit">회원가입</Btn>
             </div>
 
           </div>

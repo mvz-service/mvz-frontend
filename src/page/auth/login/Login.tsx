@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { MySwal } from "../../../utils/MySwal";
 import { firebase_errors } from "../../../constants/error";
+import Input from "../../../components/common/form/Input";
+import Btn from "../../../components/common/form/Btn";
 
 export default function Login() {
 
@@ -49,44 +51,40 @@ export default function Login() {
   }
 
   return (
-    <div className="container mx-auto py-40 px-4 ">
+    <div className="container mx-auto py-40 px-4 font-pretendard tracking-custom">
       <div className="border-2 border-point-color rounded-3xl overflow-hidden py-20 max-w-md mx-auto bg-white">
         
         <div
           className="mx-auto px-8"
         >
 
-          {/* <MenuTitle>로그인</MenuTitle> */}
-          <h4>로그인</h4>
+          <h3 className="text-point-color font-bold text-2xl text-center">로그인</h3>
           
           <form onSubmit={onSubmit}>
 
             <div
               className=" flex flex-col gap-3 mt-7 "
             >
-                <input type="email" name="email" onChange={onChange} placeholder="이메일을 입력해주세요." />
-                <input type="password" name="pwd" onChange={onChange} placeholder="비밀번호를 입력해주세요." />
-              {/* <Input 
+              <Input
                 type="email" 
                 name="email"
                 placeholder="이메일을 입력해주세요."
                 onChange={onChange}
                 required={false}
-              /> */}
-              {/* <Input 
+              />
+              <Input 
                 type="password" 
                 name="pwd"
                 placeholder="비밀번호를 입력해주세요." 
                 onChange={onChange}
                 required={false}
-              /> */}
+              />
             </div>
 
             <div
               className=" text-center mt-5 "
             >
-                <button type="submit">로그인</button>
-              {/* <Btn type="submit">로그인</Btn> */}
+              <Btn type="submit">로그인</Btn>
             </div>
 
           </form>
