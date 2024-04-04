@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`${isView ? "absolute" : ""} z-50 w-full md:px-12`}
+        className={`${isView ? "absolute" : ""} z-50 w-full md:px-12 font-pretendard tracking-custom`}
       >
           <div 
             className={`${isView ? "" : "bg-point-color"} mx-auto flex justify-between items-center text-white h-12 px-4 md:px-6 md:rounded-lg md:h-14`}
