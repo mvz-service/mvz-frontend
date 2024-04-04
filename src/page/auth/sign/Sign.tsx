@@ -11,7 +11,9 @@ import Btn from "../../../components/common/form/Btn";
 // import { Btn } from "../../component/Mypage/Btn";
 // import { Label } from "../../component/Mypage/Label";
 
-/* export const InputBox = ({children} : Props)=>{
+
+
+const InputBox = ({children} : {children : React.ReactNode})=>{
 
   return (
     <div className={`block gap-3`}>
@@ -20,7 +22,7 @@ import Btn from "../../../components/common/form/Btn";
   )
 
 }
- */
+
 
 export default function Sign() {
 
@@ -96,20 +98,19 @@ export default function Sign() {
         <form onSubmit={onSubmit}>
           <div className="flex mt-7 gap-4 flex-col max-w-4xl mx-auto">
 
-            {/* <InputBox>
+            <InputBox>
               <label htmlFor="email" className="text-sm">이메일 <span className="text-red-500 ml-1">*</span></label>
-            </InputBox> */}
+              <Input
+                id="email"
+                name="email"
+                type="email" 
+                placeholder="이메일을 입력해주세요"
+                onChange={onChange}
+                required
+              />
+            </InputBox>
             
-            <Input
-              id="email"
-              name="email"
-              type="email" 
-              placeholder="이메일을 입력해주세요"
-              onChange={onChange}
-              required
-            />
-
-            {/* <InputBox>
+            <InputBox>
             <label htmlFor="nickname" className="text-sm">닉네임 <span className="text-red-500 ml-1">*</span></label>
               <Input 
                 id="nickname" 
@@ -119,19 +120,11 @@ export default function Sign() {
                 onChange={onChange}
                 required
               />
-            </InputBox> */}
+            </InputBox>
             
-            <Input 
-              id="nickname" 
-              name="nickname" 
-              type="text" 
-              placeholder="닉네임을 입력해주세요" 
-              onChange={onChange}
-              required
-            />
-
-            {/* <InputBox>
-            <label htmlFor="nickname" className="text-sm">비밀번호 <span className="text-red-500 ml-1">*</span></label>
+            
+            <InputBox>
+              <label htmlFor="nickname" className="text-sm">비밀번호 <span className="text-red-500 ml-1">*</span></label>
               <Input 
                 id="pwd"
                 name="pwd"
@@ -140,19 +133,10 @@ export default function Sign() {
                 onChange={onChange}
                 required
               />
-            </InputBox> */}
-            
-            <Input 
-              id="pwd"
-              name="pwd"
-              type="password" 
-              placeholder="비밀번호을 입력해주세요" 
-              onChange={onChange}
-              required
-            />
+            </InputBox>
 
-            {/* <InputBox>
-            <label htmlFor="nickname" className="text-sm">비밀번호 확인 <span className="text-red-500 ml-1">*</span></label>
+            <InputBox>
+              <label htmlFor="nickname" className="text-sm">비밀번호 확인 <span className="text-red-500 ml-1">*</span></label>
               <Input 
                 id="pwdchk" 
                 name="pwdchk" 
@@ -161,17 +145,8 @@ export default function Sign() {
                 onChange={onChange}
                 required
               />
-            </InputBox> */}
+            </InputBox>
             
-            <Input 
-              id="pwdchk" 
-              name="pwdchk" 
-              type="password" 
-              placeholder="비밀번호을 다시한번 입력해주세요" 
-              onChange={onChange}
-              required
-            />
-
             <div className="text-center mt-5">
               <Btn type="submit">회원가입</Btn>
             </div>
