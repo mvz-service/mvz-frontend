@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { auth } from "../../firebase";
+import useGetUser from "../../hook/useGetUser";
 
 type Props = {
     children : React.ReactNode;
@@ -7,9 +7,12 @@ type Props = {
 
 export default function PublicRoute({children} : Props) {
 
-    const user = auth.currentUser;
-
-    console.log(user);
+    const user = useGetUser();
+    
+    if(user === null){
+        return <div>Loading...</div>
+    }
+    
 
     return !user ? <>{children}</> : <Navigate to="/" />
 

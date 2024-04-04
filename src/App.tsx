@@ -1,9 +1,11 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/common/Layout/Layout';
+import PublicRoute from './components/auth/PublicRoute';
+import PrivateRoute from './components/auth/PrivateRoute';
 import Login from './page/auth/login/Login';
 import Sign from './page/auth/sign/Sign';
-import PublicRoute from './components/auth/PublicRoute';
+import Mypage from './page/auth/mypage/Mypage';
 
 const Main = React.lazy(()=>import('./page/main/Main'));
 
@@ -27,6 +29,14 @@ function App() {
               <PublicRoute>
                 <Sign/>
               </PublicRoute>
+            }
+          />
+          <Route 
+            path='/mypage'
+            element={
+              <PrivateRoute>
+                <Mypage/>
+              </PrivateRoute>
             }
           />
         </Route>
