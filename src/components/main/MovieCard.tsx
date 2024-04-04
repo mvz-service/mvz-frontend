@@ -15,8 +15,11 @@ export default function MovieCard({item} : {item : WeeklyBoxOfficeList}) {
             />
         </div>
         <div className="mt-3">
-
-            <div>"NEW"</div>
+            {
+                item.rankOldAndNew === "NEW" ?
+                    <div className="text-white bg-red-500 inline-block p-1 text-xs rounded mb-2">{item.rankOldAndNew}</div>
+                : null
+            }
             <p className="text-xs text-point-color">{item.rank} 위</p>
 
             <dl>

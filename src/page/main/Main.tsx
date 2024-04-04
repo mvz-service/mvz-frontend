@@ -4,7 +4,8 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import MainSilde from "../../components/main/MainSilde";
 import MovieCard from "../../components/main/MovieCard";
 import { movieFetch } from "../../utils/fetch/main/movie";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { dayAxios } from "../../utils/fetch/main/day";
 
 export default function Main() {
 
@@ -24,6 +25,12 @@ export default function Main() {
     const {data : weekday} = useSuspenseQuery({
         queryKey : ["weekday"],
         queryFn : ()=>movieFetch("2")
+    });
+
+    // 일별
+    const {data : days} = useSuspenseQuery({
+        queryKey : ["days"],
+        queryFn : dayAxios
     });
 
     return (
@@ -88,10 +95,10 @@ export default function Main() {
                                 spaceBetween : 30,
                             }
                         }}
-                        >
+                    >
                         {
                             weekend && weekend.weeklyBoxOfficeList.map((item,index)=>
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <MovieCard item={item}/>
                                 </SwiperSlide>
                             )
@@ -128,10 +135,10 @@ export default function Main() {
                                 spaceBetween : 30,
                             }
                         }}
-                        >
+                    >
                         {
                             weekday && weekday.weeklyBoxOfficeList.map((item,index)=>
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <MovieCard item={item}/>
                                 </SwiperSlide>
                             )
@@ -168,10 +175,10 @@ export default function Main() {
                                 spaceBetween : 30,
                             }
                         }}
-                        >
+                    >
                         {
-                            weekday && weekday.weeklyBoxOfficeList.map((item,index)=>
-                                <SwiperSlide>
+                            days && days.dailyBoxOfficeList.map((item,index)=>
+                                <SwiperSlide key={index}>
                                     <MovieCard item={item}/>
                                 </SwiperSlide>
                             )
