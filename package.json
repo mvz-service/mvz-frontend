@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-infinite-scroller": "^1.2.6",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-infinite-scroller": "^1.2.5",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
     "tailwindcss": "^3.4.3"

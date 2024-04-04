@@ -8,6 +8,7 @@ import Sign from './page/auth/sign/Sign';
 import Mypage from './page/auth/mypage/Mypage';
 import Write from './page/review/Write';
 import Edit from './page/review/Edit';
+import List from './page/movie/List';
 
 const Main = React.lazy(()=>import('./page/main/Main'));
 const View = React.lazy(()=>import('./page/view/View'));
@@ -43,9 +44,15 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             path='/view/:movieCd'
             element={<View/>}
+          />
+          
+          <Route
+            path='/movie'
+            element={<List/>}
           />
 
           <Route

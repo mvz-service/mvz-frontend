@@ -26,8 +26,6 @@ export default function Main() {
         queryFn : ()=>movieFetch("2")
     });
 
-
-
     return (
         <main
             className="pt-12 pb-40 font-pretendard tracking-custom"
