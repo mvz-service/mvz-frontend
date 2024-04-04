@@ -1,10 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
+import { auth } from "../../firebase";
+import { MySwal } from "../../utils/MySwal";
 
 export default function Header() {
 
-//   const user = auth.currentUser;
+  const user = auth.currentUser;
   
   const navigate = useNavigate();
   const loaction = useLocation();
@@ -16,13 +18,24 @@ export default function Header() {
     setMobMenu(!mobMenu);
   }
 
-  /* const onLogOut = async ()=>{
-    const ok = window.confirm('로그아웃을 하시겠습니까?');
-    if(ok){
-      await auth.signOut();
-      navigate('/mypage/login');
-    }
-  } */
+  const onLogOut = ()=>{
+
+    MySwal.fire({
+      icon : 'warning',
+      text : "로그아웃을 하시겠습니까?",
+      showCancelButton : true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText : "네",
+      cancelButtonText : "아니요"
+    }).then((result)=>{
+      if(result.isConfirmed){
+        auth.signOut();
+        navigate('/login');  
+      }
+    });
+
+  }
 
   useEffect(()=>{
     setMobMenu(false);
@@ -65,14 +78,14 @@ export default function Header() {
                 className=" text-sm hidden md:block "
               >
                 {
-                  /* !user ?
+                  !user ?
                   <>
                     <Link 
-                      to={'/mypage/login'}
+                      to={'/login'}
                     >로그인</Link>
                     <Link 
                       className="ml-2 pl-2 border-l"
-                      to={'/mypage/sign'}
+                      to={'/sign'}
                     >회원가입</Link>
                   </>
                   : 
@@ -85,13 +98,13 @@ export default function Header() {
                       className="ml-2 pl-2 border-l cursor-pointer "
                       onClick={onLogOut}
                     >로그아웃</span>
-                  </> */
+                  </>
                 }
                   
               </nav>
 
               <div onClick={onMenuClick} className=" w-7 h-4 relative cursor-pointer md:hidden z-[52] group">
-                  <div className={`${mobMenu ? "bg-black rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-0"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300`}></div>
+                <div className={`${mobMenu ? "bg-black rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-0"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300`}></div>
                 <div className={`${mobMenu ? "bg-black -translate-x-full opacity-0" : "bg-white"} w-4/5 absolute h-menu top-1/2 right-0 transition-[opacity,transform] duration-300`}></div>
                 <div className={`${mobMenu ? "bg-black -rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-full"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300`}></div>
               </div>
@@ -99,15 +112,15 @@ export default function Header() {
               <div className={`fixed top-0 w-4/5 max-w-96 h-full z-[51] bg-white text-black pt-12 flex flex-col transition-[transform] duration-300 right-0 ${mobMenu ? "translate-x-0" : "translate-x-full"}`}>
                 <nav className="flex text-center text-white bg-point-color py-2">
                   {
-                    /* !user ?
+                    !user ?
                     <>
                       <Link 
                         className="flex-1"
-                        to={'/mypage/login'}
+                        to={'/login'}
                       >로그인</Link>
                       <Link 
                         className="flex-1 border-l border-[#5b87bd]"
-                        to={'/mypage/sign'}
+                        to={'/sign'}
                       >회원가입</Link>
                     </>
                     : 
@@ -120,7 +133,7 @@ export default function Header() {
                         className="flex-1 border-l border-[#5b87bd]"
                         onClick={onLogOut}
                       >로그아웃</span>
-                    </> */
+                    </>
                   }
                 </nav>
                 <nav className="flex flex-col px-4 text-2xl font-bold mt-5">
