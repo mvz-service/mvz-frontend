@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import MoivePoster from "../../asset/image/poster.jpg";
+import { WeeklyBoxOfficeList } from "../../types/weeklyType";
 
-export default function MovieCard() {
+export default function MovieCard({item} : {item : WeeklyBoxOfficeList}) {
   return (
     <Link to={`/movie/view/1`} className="group">
         <div
@@ -16,13 +17,13 @@ export default function MovieCard() {
         <div className="mt-3">
 
             <div>"NEW"</div>
-            <p className="text-xs text-point-color">순위</p>
+            <p className="text-xs text-point-color">{item.rank} 위</p>
 
             <dl>
-                <dt className="text-base font-semibold break-keep">123</dt>
-                <dd className="text-sm mt-1 text-neutral-500">개봉일 : 0</dd>
+                <dt className="text-base font-semibold break-keep">{item.movieNm}</dt>
+                <dd className="text-sm mt-1 text-neutral-500">개봉일 : {item.openDt}</dd>
             </dl>
-            <p className="text-xs mt-1 text-neutral-500">누적 관객수 - 0 명</p>
+            <p className="text-xs mt-1 text-neutral-500">누적 관객수 - {item.audiAcc} 명</p>
             
         </div>
     </Link>

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import MoivePoster from "../../asset/image/poster.jpg";
+import { WeeklyBoxOfficeList } from '../../types/weeklyType';
 
-export default function MainSilde() {
+export default function MainSilde({item} : {item : WeeklyBoxOfficeList}) {
   return (
     <Link
-        to={`/movie/view/`}
+        to={`/movie/view/${item.movieCd}`}
         className="block bg-point-color relative overflow-hidden rounded-2xl h-[250px] xl:h-[560px] md:h-[360px] md:rounded-[20px]"
     >
         <div className="absolute left-0 top-0 object-cover w-full h-full after:content-[''] after:block after:absolute after:left-0 after:top-0 after:bg-black after:z-10 after:w-full after:h-full after:opacity-30">
@@ -19,8 +20,8 @@ export default function MainSilde() {
                 주간 박스오피스
             </h4>
             <dl className="mt-2 md:mt-3">
-                <dt className="text-base md:text-lg xl:text-2xl">[영화제목]</dt>
-                <dd className="text-xs md:text-sm opacity-70 mt-2 md:mt-3 ">개봉일 - [0000.00.00]</dd>
+                <dt className="text-base md:text-lg xl:text-2xl">{item.movieNm}</dt>
+                <dd className="text-xs md:text-sm opacity-70 mt-2 md:mt-3 ">개봉일 - {item.openDt}</dd>
             </dl>
         </div>
     </Link>
