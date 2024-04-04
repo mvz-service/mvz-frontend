@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily : {
+        pretendard: ["Pretendard"],
+      },
+      letterSpacing : {
+        custom : "-0.02em"
+      },
       colors : {
         'point-color' : "#7BB7FE"
       },
