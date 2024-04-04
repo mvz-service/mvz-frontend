@@ -8,6 +8,7 @@ import Sign from './page/auth/sign/Sign';
 import Mypage from './page/auth/mypage/Mypage';
 import Write from './page/review/Write';
 import Edit from './page/review/Edit';
+import NotFound from './page/404/NotFound';
 
 const Main = React.lazy(()=>import('./page/main/Main'));
 const View = React.lazy(()=>import('./page/view/View'));
@@ -15,7 +16,6 @@ const View = React.lazy(()=>import('./page/view/View'));
 function App() {
   return (
     <Suspense fallback={<div>로딩중</div>}>
-      
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Main/>}/>
@@ -70,6 +70,7 @@ function App() {
           </Route>
 
         </Route>
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Suspense>
   );

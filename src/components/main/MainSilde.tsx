@@ -5,7 +5,7 @@ import { WeeklyBoxOfficeList } from '../../types/weeklyType';
 export default function MainSilde({item} : {item : WeeklyBoxOfficeList}) {
   return (
     <Link
-        to={`/movie/view/${item.movieCd}`}
+        to={`/view/${item.movieCd}`}
         className="block bg-point-color relative overflow-hidden rounded-2xl h-[250px] xl:h-[560px] md:h-[360px] md:rounded-[20px]"
     >
         <div className="absolute left-0 top-0 object-cover w-full h-full after:content-[''] after:block after:absolute after:left-0 after:top-0 after:bg-black after:z-10 after:w-full after:h-full after:opacity-30">
