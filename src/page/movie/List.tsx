@@ -1,9 +1,10 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import React, { useEffect, useRef, useState } from "react";
-import { useInfiniteQuery, useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import moment from "moment";
 import { movieListAxios } from '../../utils/fetch/movie/MovieList';
 import Card from '../../components/movie/Card';
+import { SyncLoader } from 'react-spinners';
 
 export default function List() {
 
@@ -187,19 +188,20 @@ export default function List() {
             </div>
 
             <div className="rounded-xl py-10 px-4 md:p-10 bg-white w-full md:w-auto flex-1">
-                <div className="container max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 gap-y-14">
+                <>
+                    <div className="container max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 gap-y-14">
+                        {
+                            data?.pages.map((page,index)=>
+                                <React.Fragment key={index}>
+                                    {page?.movieList.map((item)=><Card key={item.movieCd} item={item}/>)}
+                                </React.Fragment>
+                            )
+                        }
+                    </div>
                     {
-                        data?.pages.map((page,index)=>
-                            <React.Fragment key={index}>
-                                {page?.movieList.map((item)=><Card key={item.movieCd} item={item}/>)}
-                            </React.Fragment>
-                        )
+                        isFetchingNextPage && <div className='flex justify-center mt-5'><SyncLoader size={5} color='#7bb7fe'/></div>
                     }
-                </div>
-                {/* {
-                    isFetchingNextPage && <p>로딩중<p/>
-                    <Type02 isLoading={isFetchingNextPage}/>
-                } */}
+                </>
             </div>
 
         </InfiniteScroll>
