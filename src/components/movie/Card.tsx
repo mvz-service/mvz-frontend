@@ -11,7 +11,7 @@ export default function Card({item} : {item? : MovieList}) {
     }) */
 
     return (
-        <Link to={`/movie/view/${item?.movieCd}`} className="group">
+        <Link to={`/view/${item?.movieCd}`} className="group">
             <div
                 className={`w-full bg-cyan-50 relative overflow-hidden pb-[calc(470/329*100%)] after:pb-2.5 after:content-[''] after:block`}
             >
