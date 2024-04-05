@@ -1,4 +1,4 @@
-import {Swiper,SwiperSlide} from "swiper/react";
+import {Swiper,SwiperRef,SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation} from "swiper/modules"
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import MainSilde from "../../components/main/MainSilde";
@@ -6,6 +6,7 @@ import MovieCard from "../../components/main/MovieCard";
 import { movieFetch } from "../../utils/fetch/main/movie";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { dayAxios } from "../../utils/fetch/main/day";
+import { useRef } from "react";
 
 export default function Main() {
 
@@ -20,18 +21,45 @@ export default function Main() {
         queryKey : ["weekend"],
         queryFn : ()=>movieFetch("1")
     });
+    const weekendRef = useRef<SwiperRef>(null);
+    const weekendPrev = ()=>{
+        if(!weekendRef.current) return;
+        weekendRef.current.swiper.slidePrev();
+    }
+    const weekendNext = ()=>{
+        if(!weekendRef.current) return;
+        weekendRef.current.swiper.slideNext();
+    }
 
     // 주중
     const {data : weekday} = useSuspenseQuery({
         queryKey : ["weekday"],
         queryFn : ()=>movieFetch("2")
     });
+    const weekdayRef = useRef<SwiperRef>(null);
+    const weekdayPrev = ()=>{
+        if(!weekdayRef.current) return;
+        weekdayRef.current.swiper.slidePrev();
+    }
+    const weekdayNext = ()=>{
+        if(!weekdayRef.current) return;
+        weekdayRef.current.swiper.slideNext();
+    }
 
     // 일별
     const {data : days} = useSuspenseQuery({
         queryKey : ["days"],
         queryFn : dayAxios
     });
+    const daysRef = useRef<SwiperRef>(null);
+    const daysPrev = ()=>{
+        if(!daysRef.current) return;
+        daysRef.current.swiper.slidePrev();
+    }
+    const daysNext = ()=>{
+        if(!daysRef.current) return;
+        daysRef.current.swiper.slideNext();
+    }
 
     return (
         <main
@@ -69,8 +97,8 @@ export default function Main() {
                 <div className="flex justify-between">
                     <h4 className="text-center text-lg font-bold text-point-color md:text-2xl">주말 박스오피스</h4>
                     <div className="text-point-color text-3xl flex items-center">
-                        <button><FaAngleLeft/></button>
-                        <button><FaAngleRight/></button>
+                        <button onClick={weekendPrev}><FaAngleLeft/></button>
+                        <button onClick={weekendNext}><FaAngleRight/></button>
                     </div>
                 </div>
 
@@ -81,10 +109,7 @@ export default function Main() {
                         loop={true}
                         speed={600}
                         modules={[Navigation]}
-                        /* navigation={{
-                            nextEl : rightRef.current,
-                            prevEl : leftRef.current
-                        }} */
+                        ref={weekendRef}
                         breakpoints={{
                             481 : {
                                 slidesPerView : 2.3,
@@ -109,8 +134,8 @@ export default function Main() {
                 <div className="flex justify-between mt-20">
                     <h4 className="text-center text-lg font-bold text-point-color md:text-2xl">주중 박스오피스</h4>
                     <div className="text-point-color text-3xl flex items-center">
-                        <button><FaAngleLeft/></button>
-                        <button><FaAngleRight/></button>
+                        <button onClick={weekdayPrev}><FaAngleLeft/></button>
+                        <button onClick={weekdayNext}><FaAngleRight/></button>
                     </div>
                 </div>
 
@@ -121,10 +146,7 @@ export default function Main() {
                         loop={true}
                         speed={600}
                         modules={[Navigation]}
-                        /* navigation={{
-                            nextEl : rightRef.current,
-                            prevEl : leftRef.current
-                        }} */
+                        ref={weekdayRef}
                         breakpoints={{
                             481 : {
                                 slidesPerView : 2.3,
@@ -149,8 +171,8 @@ export default function Main() {
                 <div className="flex justify-between mt-20">
                     <h4 className="text-center text-lg font-bold text-point-color md:text-2xl">일별 박스오피스</h4>
                     <div className="text-point-color text-3xl flex items-center">
-                        <button><FaAngleLeft/></button>
-                        <button><FaAngleRight/></button>
+                        <button onClick={daysPrev}><FaAngleLeft/></button>
+                        <button onClick={daysNext}><FaAngleRight/></button>
                     </div>
                 </div>
 
@@ -161,10 +183,7 @@ export default function Main() {
                         loop={true}
                         speed={600}
                         modules={[Navigation]}
-                        /* navigation={{
-                            nextEl : rightRef.current,
-                            prevEl : leftRef.current
-                        }} */
+                        ref={daysRef}
                         breakpoints={{
                             481 : {
                                 slidesPerView : 2.3,
