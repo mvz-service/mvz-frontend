@@ -12,13 +12,22 @@ import List from './page/movie/List';
 import NotFound from './page/404/NotFound';
 import Company from './page/company/Company';
 import People from './page/people/People';
+import { PacmanLoader } from 'react-spinners';
 
 const Main = React.lazy(()=>import('./page/main/Main'));
 const View = React.lazy(()=>import('./page/view/View'));
 
 function App() {
   return (
-    <Suspense fallback={<div>로딩중</div>}>
+    <Suspense 
+      fallback={
+        <div className='flex h-screen items-center justify-center'>
+          <PacmanLoader
+            color='#7bb7fe'
+          />
+        </div>
+      }
+    >
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Main/>}/>
