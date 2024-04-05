@@ -11,6 +11,7 @@ import Edit from './page/review/Edit';
 import List from './page/movie/List';
 import NotFound from './page/404/NotFound';
 import Company from './page/company/Company';
+import People from './page/people/People';
 
 const Main = React.lazy(()=>import('./page/main/Main'));
 const View = React.lazy(()=>import('./page/view/View'));
@@ -59,6 +60,11 @@ function App() {
           <Route
             path='/company'
             element={<Company/>}
+          />
+
+          <Route
+            path='/people'
+            element={<People/>}
           />
 
           <Route
