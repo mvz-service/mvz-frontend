@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { peopleListAxios } from '../../utils/fetch/people/PeopleList';
 import Card from '../../components/people/Card';
+import { SyncLoader } from 'react-spinners';
 
 export default function People() {
 
@@ -12,7 +13,7 @@ export default function People() {
     const [peopleNm,setPeopleNm] = useState('');
     const [filmoNames,setFilmoNames] = useState('');
 
-    const {data : peoples, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery({
+    const {data : peoples, hasNextPage, fetchNextPage, isFetchingNextPage } = useSuspenseInfiniteQuery({
         queryKey : ["peopleList",peopleNm,filmoNames],
         queryFn : ({pageParam})=>peopleListAxios(pageParam,peopleNm,filmoNames),
         initialPageParam : 1, // 기본 페이지 지정
@@ -75,20 +76,22 @@ export default function People() {
                 </div>
 
                 <div className="w-full bg-white py-10 px-4 md:p-10 rounded-xl">
-                    <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 gap-y-14">
+                    <>
+                        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 gap-y-14">
+                            {
+                                peoples?.pages.map((page,i)=>
+                                    <React.Fragment key={i}>
+                                        {page?.peopleList.map((people)=>(
+                                            <Card key={people.peopleCd} item={people}/>
+                                        ))}
+                                    </React.Fragment>
+                                )
+                            }
+                        </div>
                         {
-                            peoples?.pages.map((page,i)=>
-                                <React.Fragment key={i}>
-                                    {page?.peopleList.map((people)=>(
-                                        <Card key={people.peopleCd} item={people}/>
-                                    ))}
-                                </React.Fragment>
-                            )
+                            isFetchingNextPage && <div className='flex justify-center mt-5'><SyncLoader size={5} color='#7bb7fe'/></div>
                         }
-                    </div>
-                    {/* {
-                    isFetchingNextPage && <Type02 isLoading={isFetchingNextPage}/>
-                    } */}
+                    </>
                 </div>
             </InfiniteScroll>
         </main>
