@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import { useSuspenseInfiniteQuery} from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroller";
 import { companyListAxios } from "../../utils/fetch/company/CompanyList";
@@ -13,7 +13,7 @@ export default function Company() {
     const [companyNm,setCompanyNm] = useState('');
     const [ceoNm,setCeoNm] = useState('');
 
-    const {data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery({
+    const {data, hasNextPage, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery({
         queryKey : ["companyList",companyNm,ceoNm],
         queryFn : ({pageParam}) => companyListAxios(pageParam,companyNm,ceoNm),
         initialPageParam : 1,

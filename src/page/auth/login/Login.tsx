@@ -7,6 +7,8 @@ import { MySwal } from "../../../utils/MySwal";
 import { firebase_errors } from "../../../constants/error";
 import Input from "../../../components/common/form/Input";
 import Btn from "../../../components/common/form/Btn";
+import { GoogleBtn } from "../../../components/auth/social/GoogleBtn";
+import { GitHubBtn } from "../../../components/auth/social/GitHubBtn";
 
 export default function Login() {
 
@@ -43,6 +45,7 @@ export default function Login() {
     catch(e){
       if(e instanceof FirebaseError){
         await MySwal.fire({
+          icon : "error",
           text : firebase_errors[e.code]
         });
       }
@@ -99,8 +102,8 @@ export default function Login() {
           </div>
 
           <nav className=" flex gap-3 justify-center mt-4 ">
-            {/* <Google_Btn/> */}
-            {/* <GitHub_Btn/> */}
+            <GoogleBtn/>
+            <GitHubBtn/>
           </nav>
 
         </div>

@@ -1,9 +1,9 @@
 import React from "react"
-import { IoCreate, IoStarOutline, IoStarSharp, IoTrashBin } from "react-icons/io5"
+import { IoCreate, IoStarOutline, IoStarSharp } from "react-icons/io5"
 import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
-import { useReviews } from "../../hook/useRevies";
+import { useReviews } from "../../hook/useReview";
 import Remove from "./Remove";
 import { MySwal } from "../../utils/MySwal";
 import { useSetRecoilState } from "recoil";
