@@ -1,6 +1,6 @@
 import {ReactComponent as Tistory} from "../../asset/image/tistory.svg";
 import {IoChatboxEllipses,IoLogoGithub, IoMailSharp} from "react-icons/io5"
-import { useRecoilValue } from "recoil"
+// import { useRecoilValue } from "recoil"
 /* import { modalDispatch } from "../../Atom/modal"
 import CustomModal from "../Modal/CustomModal/CustomModal";
 import MessageModal from "../Modal/MessageModal/MessageModal"; */
