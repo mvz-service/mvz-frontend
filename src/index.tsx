@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import "swiper/css";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
+import ModalsProvider from './provider/ModalsProvider';
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ModalsProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ModalsProvider>
       </RecoilRoot>
     </QueryClientProvider>
   </React.StrictMode>
