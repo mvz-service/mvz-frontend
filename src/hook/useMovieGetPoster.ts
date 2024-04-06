@@ -17,6 +17,9 @@ export const useMovieGetPoster = (moviecode : string)=>{
             }
             reader.readAsDataURL(response.data);
         })
+        .catch(_=>{
+            console.error('포스터를 가져오는데 에러가 발생했습니다.');
+        })
 
     },[moviecode])
 
