@@ -71,7 +71,7 @@ export const useReviews = (movieCd? : string, userId? : string)=>{
             unsubscribe && unsubscribe();
         }
 
-    },[]);
+    },[movieCd,userId]);
 
     return reviews;
 

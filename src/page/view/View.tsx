@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { movieInfoFetch } from "../../utils/fetch/view/movieInfo";
 import { useQuery } from "@tanstack/react-query";
 import List from "../../components/review/List";
@@ -8,7 +8,7 @@ import List from "../../components/review/List";
 export default function View() {
 
     const {movieCd} = useParams();
-    const [poster,setPoster] = useState({});
+    // const [poster,setPoster] = useState({});
 
     const {data : info} = useQuery({
         queryKey : ["infoData",movieCd],

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import { IoPersonSharp } from "react-icons/io5";
 import { PeopleList } from "../../types/PeopleListType";
 import AnonymousImage from "../../asset/image/anonymous.jpg";
 

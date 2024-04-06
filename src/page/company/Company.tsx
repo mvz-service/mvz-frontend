@@ -1,8 +1,9 @@
-import React, {useEffect, useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import { useSuspenseInfiniteQuery} from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroller";
 import { companyListAxios } from "../../utils/fetch/company/CompanyList";
 import { Card } from "../../components/company/Card";
+import { SyncLoader } from "react-spinners";
 
 export default function Company() {
 
@@ -12,7 +13,7 @@ export default function Company() {
     const [companyNm,setCompanyNm] = useState('');
     const [ceoNm,setCeoNm] = useState('');
 
-    const {data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery({
+    const {data, hasNextPage, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery({
         queryKey : ["companyList",companyNm,ceoNm],
         queryFn : ({pageParam}) => companyListAxios(pageParam,companyNm,ceoNm),
         initialPageParam : 1,
@@ -78,20 +79,22 @@ export default function Company() {
                 </div>
 
                 <div className="rounded-xl py-10 px-4 md:p-10 bg-white w-full md:w-auto flex-1">
-                    <div className="container max-w-screen-xl mx-auto grid grid-cols-1 gap-5 gap-y-5 xl:gap-y-14 xl:grid-cols-2">
+                    <>
+                        <div className="container max-w-screen-xl mx-auto grid grid-cols-1 gap-5 gap-y-5 xl:gap-y-14 xl:grid-cols-2">
+                            {
+                                data?.pages.map((page,i)=>(
+                                    <React.Fragment key={i}>
+                                        {
+                                            page.companyList.map(list=><Card key={list?.companyCd} list={list}/>)
+                                        }
+                                    </React.Fragment>
+                                ))
+                            }
+                        </div>
                         {
-                            data?.pages.map((page,i)=>(
-                                <React.Fragment key={i}>
-                                    {
-                                        page.companyList.map(list=><Card key={list?.companyCd} list={list}/>)
-                                    }
-                                </React.Fragment>
-                            ))
+                            isFetchingNextPage && <div className='flex justify-center mt-5'><SyncLoader size={5} color='#7bb7fe'/></div>
                         }
-                    </div>
-                    {/* {
-                        isFetchingNextPage && <Type02 isLoading={isFetchingNextPage}/>
-                    } */}
+                    </>
                 </div>
 
             </InfiniteScroll>

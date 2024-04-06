@@ -1,13 +1,15 @@
 import { useRef, useState } from "react"
 import { IoPersonSharp } from "react-icons/io5"
 import { FirebaseError } from "firebase/app"
-import { signOut, updatePassword, updateProfile } from "firebase/auth"
+import { updatePassword, updateProfile } from "firebase/auth"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { auth, storage } from "../../../firebase"
 import { MySwal } from "../../../utils/MySwal"
 import Input from "../../../components/common/form/Input"
 import Btn from "../../../components/common/form/Btn"
 import { firebase_errors } from "../../../constants/error"
+import List from "../../../components/review/List"
+import { TabBtn } from "../../../components/auth/mypage/TabBtn"
 
 const Container = ({children} : {children : React.ReactNode})=>{
     return (
@@ -29,24 +31,14 @@ const InputBox = ({children} : {children : React.ReactNode})=>{
   
 }
 
-interface TabBtn {
-    children : React.ReactNode;
-    onClick? : React.MouseEventHandler<HTMLButtonElement>
-    className? : string | null
-}
 
-const TabBtn = ({onClick,children,className} : TabBtn)=>{
-    return (
-        <button onClick={onClick} className={`flex-1 border-2 border-point-color py-2 rounded-lg text-xs md:text-base md:rounded-xl ${className}`}>{children}</button>
-    )
-}
 
 export default function Mypage() {
 
     const fileRef = useRef<HTMLInputElement>(null);
 
     const user = auth.currentUser;
-    const [providerId,setProviderId] = useState(user?.providerData[0].providerId); // 로그인 방식
+    const [providerId] = useState(user?.providerData[0].providerId); // 로그인 방식
     const [profile,setProfile] = useState(user?.photoURL);
     const [tab,setTab] = useState(false);
     const [nickname,setNickname] = useState('');
@@ -178,8 +170,14 @@ export default function Mypage() {
         <p className="text-center text-base font-bold mt-5">{user?.displayName}</p>
 
         <div className="flex justify-between gap-2 md:gap-5 mt-14">
-            <TabBtn onClick={()=>setTab(false)} className={!tab ? "bg-point-color text-white" : null} >회원 정보</TabBtn>
-            <TabBtn onClick={()=>setTab(true)} className={tab ? "bg-point-color text-white" : null}>작성 리뷰</TabBtn>
+            <TabBtn 
+                onClick={()=>setTab(false)} 
+                className={!tab ? "bg-point-color text-white" : null} 
+            >회원 정보</TabBtn>
+            <TabBtn 
+                onClick={()=>setTab(true)} 
+                className={tab ? "bg-point-color text-white" : null}
+            >작성 리뷰</TabBtn>
         </div>
 
         {
@@ -253,7 +251,7 @@ export default function Mypage() {
                 : null
             : 
             <div className="mt-5">
-                {/* <Reviews userId={user?.uid}/> */}
+                <List userId={user?.uid}/>
             </div>
         }
 
