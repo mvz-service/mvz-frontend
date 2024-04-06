@@ -5,7 +5,7 @@ import Footer from "../Footer";
 export default function Layout() {
 
     const loaction = useLocation();
-    const isView = loaction.pathname.startsWith('/movie/view');
+    const isView = loaction.pathname.startsWith('/view');
 
     return (
         <div className={`${isView ? "" : "md:pt-10"} bg-[#e6e6e6]`}>

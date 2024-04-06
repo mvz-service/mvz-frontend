@@ -12,7 +12,7 @@ export default function Header() {
   const loaction = useLocation();
   const [mobMenu,setMobMenu] = useState(false)
 
-  const isView = loaction.pathname.startsWith('/movie/view');
+  const isView = loaction.pathname.startsWith('/view');
 
   const onMenuClick = ()=>{
     setMobMenu(!mobMenu);
@@ -75,7 +75,7 @@ export default function Header() {
               </nav>
 
               <nav
-                className=" text-sm hidden md:block "
+                className="text-sm hidden md:block "
               >
                 {
                   !user ?
@@ -104,9 +104,9 @@ export default function Header() {
               </nav>
 
               <div onClick={onMenuClick} className=" w-7 h-4 relative cursor-pointer md:hidden z-[52] group">
-                <div className={`${mobMenu ? "bg-black rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-0"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300`}></div>
-                <div className={`${mobMenu ? "bg-black -translate-x-full opacity-0" : "bg-white"} w-4/5 absolute h-menu top-1/2 right-0 transition-[opacity,transform] duration-300`}></div>
-                <div className={`${mobMenu ? "bg-black -rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-full"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300`}></div>
+                <div className={`${mobMenu ? "bg-black rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-0"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300 h-1`}></div>
+                <div className={`${mobMenu ? "bg-black -translate-x-full opacity-0" : "bg-white"} w-4/5 absolute h-menu top-1/2 right-0 transition-[opacity,transform] duration-300 h-1`}></div>
+                <div className={`${mobMenu ? "bg-black -rotate-45 top-1/2 -translate-y-1/2" : "bg-white top-full"} w-full absolute h-menu left-0 transition-[background,transform,top] duration-300 h-1`}></div>
               </div>
 
               <div className={`fixed top-0 w-4/5 max-w-96 h-full z-[51] bg-white text-black pt-12 flex flex-col transition-[transform] duration-300 right-0 ${mobMenu ? "translate-x-0" : "translate-x-full"}`}>
