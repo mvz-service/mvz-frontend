@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import MoivePoster from "../../asset/image/poster.jpg";
 import { WeeklyBoxOfficeList } from "../../types/weeklyType";
-import { useQuery } from "@tanstack/react-query";
-import { listGetAjax } from "../../utils/fetch/poster/ListGet";
 
 export default function MovieCard({item} : {item : WeeklyBoxOfficeList}) {
 
-    const {data : poster,isLoading,isError} = useQuery({
+    /* const {data : poster,isLoading,isError} = useQuery({
         queryKey : ["MovieCardPosterKey",item.movieCd],
         queryFn : ()=>listGetAjax(item.movieCd)
-    })
+    }) */
 
     return (
         <Link to={`/view/${item.movieCd}`} className="group">
@@ -18,13 +16,7 @@ export default function MovieCard({item} : {item : WeeklyBoxOfficeList}) {
             >
                 <img 
                     className="absolute left-0 top-0 w-full h-full object-cover transition-transform group-hover:scale-110"
-                    src={ 
-                        isError 
-                            ?
-                                MoivePoster
-                            :
-                                !isLoading && poster ? poster : MoivePoster
-                    }
+                    src={MoivePoster}
                     alt={`${item.movieNm} 포스터`}
                 />
 
