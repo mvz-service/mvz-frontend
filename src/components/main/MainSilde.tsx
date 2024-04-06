@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 import MoivePoster from "../../asset/image/poster.jpg";
 import { WeeklyBoxOfficeList } from '../../types/weeklyType';
-import { useGetSlideMoviePoster } from '../../hook/useGetSlideMoviePoster';
+import { slideGetAjax } from '../../utils/fetch/poster/SlideGet';
+import { useQuery } from '@tanstack/react-query';
 
 export default function MainSilde({item} : {item : WeeklyBoxOfficeList}) {
 
-    const poster = useGetSlideMoviePoster(item.movieCd);
+    const {data : poster,isLoading,isError} = useQuery({
+        queryKey : ["MainSildePosterKey",item.movieCd],
+        queryFn : ()=>slideGetAjax(item.movieCd)
+    })
 
   return (
     <Link
@@ -15,7 +19,13 @@ export default function MainSilde({item} : {item : WeeklyBoxOfficeList}) {
         <div className="absolute left-0 top-0 object-cover w-full h-full after:content-[''] after:block after:absolute after:left-0 after:top-0 after:bg-black after:z-10 after:w-full after:h-full after:opacity-30">
             <img 
                 className="absolute left-0 top-0 object-cover w-full h-full "
-                src={ poster ? poster : MoivePoster }
+                src={ 
+                    isError 
+                        ?
+                            MoivePoster
+                        :
+                            !isLoading && poster ? poster : MoivePoster
+                }
                 alt={`${item.movieNm} 포스터`}
             />
         </div>
